@@ -18,7 +18,7 @@ def convert_mp3_to_array(mp3_path, output_header, array_name="audio_data", sampl
     audio = AudioSegment.from_mp3(mp3_path)
     audio = audio.set_channels(1)
     audio = audio.set_frame_rate(sample_rate)
-    audio = audio.set_sample_width(1)
+    audio = audio.set_sample_width(1)          # 8-bit signed PCM
     audio = audio.low_pass_filter(sample_rate // 2)
     audio = audio.normalize(headroom=0.1)
 
@@ -29,6 +29,9 @@ def convert_mp3_to_array(mp3_path, output_header, array_name="audio_data", sampl
         raise ValueError("Trimmed data is empty. Try reducing trim aggressiveness or checking the source file.")
 
     print(f"[INFO] Final length: {len(trimmed)} bytes")
+
+    # Convert signed 8-bit PCM to unsigned 8-bit (0–255)
+    unsigned_data = bytes((sample + 128) % 256 for sample in trimmed)
 
     # Ensure output path exists
     os.makedirs(os.path.dirname(output_header), exist_ok=True)
@@ -41,19 +44,19 @@ def convert_mp3_to_array(mp3_path, output_header, array_name="audio_data", sampl
         f.write('#include <avr/pgmspace.h>\n\n')
         f.write(f'const unsigned char {array_name}[] PROGMEM = {{\n')
 
-        for i, byte in enumerate(trimmed):
+        for i, byte in enumerate(unsigned_data):
             if i % 12 == 0:
                 f.write('    ')
             f.write(f'0x{byte:02X}')
-            if i != len(trimmed) - 1:
+            if i != len(unsigned_data) - 1:
                 f.write(', ')
             if (i + 1) % 12 == 0:
                 f.write('\n')
-        if len(trimmed) % 12 != 0:
+        if len(unsigned_data) % 12 != 0:
             f.write('\n')
 
         f.write('};\n')
-        f.write(f'const unsigned int {array_name}_len = {len(trimmed)};\n\n')
+        f.write(f'const unsigned int {array_name}_len = {len(unsigned_data)};\n\n')
         f.write(f'#endif // {array_name.upper()}_H\n')
 
     print(f"[DONE] Header saved to: {output_header}")

@@ -3,73 +3,70 @@ import argparse
 import os
 
 def trim_silence(data: bytes, silence_values=(128, 0)) -> bytes:
-    """Trims leading and trailing bytes equal to values in silence_values."""
-    start = 0
-    end = len(data)
-
+    """Trim leading and trailing silence values."""
+    start, end = 0, len(data)
     while start < end and data[start] in silence_values:
         start += 1
-
     while end > start and data[end - 1] in silence_values:
         end -= 1
-
     return data[start:end]
 
-def convert_mp3_to_array(mp3_path, output_header, array_name="audio_data"):
-    print(f"[INFO] Converting: {mp3_path}")
+def convert_mp3_to_array(mp3_path, output_header, array_name="audio_data", sample_rate=1000):
+    print(f"[INFO] Converting '{mp3_path}' at {sample_rate} Hz...")
 
-    # Load and convert MP3 to 8-bit mono 8kHz
+    # Load and preprocess
     audio = AudioSegment.from_mp3(mp3_path)
-    audio = audio.set_channels(1).set_frame_rate(8000).set_sample_width(1)
+    audio = audio.set_channels(1)
+    audio = audio.set_frame_rate(sample_rate)
+    audio = audio.set_sample_width(1)
+    audio = audio.low_pass_filter(sample_rate // 2)
+    audio = audio.normalize(headroom=0.1)
+
     raw_data = audio.raw_data
+    trimmed = trim_silence(raw_data, silence_values=(128, 0))
 
-    # Trim silence
-    trimmed_data = trim_silence(raw_data, silence_values=(128, 0))
-    length = len(trimmed_data)
-    print(f"[INFO] Trimmed length: {length} bytes (from {len(raw_data)} bytes)")
+    if not trimmed:
+        raise ValueError("Trimmed data is empty. Try reducing trim aggressiveness or checking the source file.")
 
-    if length == 0:
-        raise ValueError("Trimmed audio is empty. File may be silent or overly trimmed.")
+    print(f"[INFO] Final length: {len(trimmed)} bytes")
 
-    # Ensure output directory exists
+    # Ensure output path exists
     os.makedirs(os.path.dirname(output_header), exist_ok=True)
 
-    # Generate header file
+    # Write C header file
     with open(output_header, 'w') as f:
         f.write(f'// Auto-generated from {os.path.basename(mp3_path)}\n')
         f.write(f'#ifndef {array_name.upper()}_H\n')
         f.write(f'#define {array_name.upper()}_H\n\n')
-        f.write(f'#include <avr/pgmspace.h>\n\n')
+        f.write('#include <avr/pgmspace.h>\n\n')
         f.write(f'const unsigned char {array_name}[] PROGMEM = {{\n')
 
-        # Write data with proper formatting and no trailing comma
-        for i, byte in enumerate(trimmed_data):
+        for i, byte in enumerate(trimmed):
             if i % 12 == 0:
                 f.write('    ')
             f.write(f'0x{byte:02X}')
-            if i < length - 1:
+            if i != len(trimmed) - 1:
                 f.write(', ')
             if (i + 1) % 12 == 0:
                 f.write('\n')
-        if length % 12 != 0:
+        if len(trimmed) % 12 != 0:
             f.write('\n')
 
         f.write('};\n')
-        f.write(f'const unsigned int {array_name}_len = {length};\n\n')
+        f.write(f'const unsigned int {array_name}_len = {len(trimmed)};\n\n')
         f.write(f'#endif // {array_name.upper()}_H\n')
 
     print(f"[DONE] Header saved to: {output_header}")
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Convert MP3 to C array for Arduino playback")
-    parser.add_argument("input", help="Path to input .mp3 file")
-    parser.add_argument("output", help="Output C header file (.h)")
+    parser = argparse.ArgumentParser(description="Convert MP3 to a flash-safe C array for Arduino")
+    parser.add_argument("input", help="Path to input MP3 file")
+    parser.add_argument("output", help="Output .h file")
     parser.add_argument("--name", help="C array name", default=None)
+    parser.add_argument("--rate", type=int, default=1000, help="Sample rate in Hz (default: 1000)")
 
     args = parser.parse_args()
-
-    # Auto-generate a safe array name from file if not provided
     if args.name is None:
         args.name = os.path.splitext(os.path.basename(args.input))[0].replace("-", "_").replace(" ", "_")
 
-    convert_mp3_to_array(args.input, args.output, args.name)
+    convert_mp3_to_array(args.input, args.output, args.name, args.rate)

@@ -1,6 +1,6 @@
 # artisan-automation
 
-Art+Manufacturing ASU Competition
+Art+Manufacturing ASU Competition (AY 2024-25)
 
 ## Additional Required Packages
 
@@ -8,7 +8,7 @@ Art+Manufacturing ASU Competition
 ffmpeg
 ```
 
-# How to Use
+## How to Convert Audio
 
 ```bash
 python -m venv venv && venv/Scripts/activate  # Create and activate python virtual environmnet

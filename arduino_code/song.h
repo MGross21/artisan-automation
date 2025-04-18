@@ -2,7 +2,7 @@
 #ifndef ASU_FIGHT_SONG_H
 #define ASU_FIGHT_SONG_H
 
-#include <avr/pgmspace.h>  // Store data in flash memory
+#include <avr/pgmspace.h>
 
 const unsigned char asu_fight_song[] PROGMEM = {
     0xFF, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0xFF, 0x00, 

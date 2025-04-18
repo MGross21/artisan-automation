@@ -1,4 +1,5 @@
 #include "song.h"
+#include <avr/pgmspace.h>
 
 void setup() {
   pinMode(9, OUTPUT);

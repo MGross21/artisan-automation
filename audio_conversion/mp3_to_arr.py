@@ -4,11 +4,15 @@ import os
 
 def convert_mp3_to_array(mp3_path, output_header, array_name="audio_data"):
     # Convert MP3 to 8-bit mono WAV using pydub (requires ffmpeg)
+    print(f"[INFO] Converting {mp3_path}...")
     audio = AudioSegment.from_mp3(mp3_path)
     audio = audio.set_channels(1).set_frame_rate(8000).set_sample_width(1)  # mono, 8kHz, 8-bit
     raw_data = audio.raw_data
 
     print(f"[INFO] Audio length: {len(raw_data)} bytes")
+
+    # Ensure output directory exists
+    os.makedirs(os.path.dirname(output_header), exist_ok=True)
 
     # Write C header file
     with open(output_header, 'w') as f:
@@ -17,7 +21,7 @@ def convert_mp3_to_array(mp3_path, output_header, array_name="audio_data"):
         f.write(f'#include <avr/pgmspace.h>\n\n')
         f.write(f'const unsigned char {array_name}[] PROGMEM = {{\n')
 
-        # Write hex values
+        # Write hex values (12 per line)
         for i, byte in enumerate(raw_data):
             if i % 12 == 0:
                 f.write('    ')

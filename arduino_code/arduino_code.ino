@@ -5,8 +5,11 @@ void setup() {
 }
 
 void loop() {
-  for (unsigned int i = 0; i < song_len; i++) {
-    analogWrite(9, song[i]); // send 8-bit value to PWM
-    delayMicroseconds(125);  // 8000 Hz sample rate
+  for (unsigned int i = 0; i < asu_fight_song_len; i++) {
+    uint8_t val = pgm_read_byte(&asu_fight_song[i]);
+    analogWrite(9, val);
+    delayMicroseconds(125);  // 8000 Hz playback
   }
+
+  delay(1000); // pause before repeating
 }

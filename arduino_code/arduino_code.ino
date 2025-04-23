@@ -16,9 +16,9 @@ int buzzer = 6; // Pin for the buzzer
 int motor = 8;  // Pin for the motor
 
 Servo servo1;
-int servo1Pin = 3; // Pin for the first servo
+int servo1Pin = 3; // Pin for the right-side servo
 Servo servo2;
-int servo2Pin = 5; // Pin for the second servo
+int servo2Pin = 5; // Pin for the left-side servo
 
 void movePos1(){
   servo1.write(90);

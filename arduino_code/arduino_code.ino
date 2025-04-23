@@ -7,12 +7,30 @@
 */
 
 #include "pitches.h"
+#include <Servo.h>
 #define REST 0
 
 // Configuration
 int tempo = 144; 
 int buzzer = 6; // Pin for the buzzer
 int motor = 8;  // Pin for the motor
+
+Servo servo1;
+int servo1Pin = 3; // Pin for the first servo
+Servo servo2;
+int servo2Pin = 5; // Pin for the second servo
+
+void movePos1(){
+  servo1.write(90);
+  servo2.write(0);
+}
+
+void movePos2(){
+  servo1.write(5);
+  servo2.write(85);
+}
+
+
 
 // Melody and durations
 int melody[] = {
@@ -62,6 +80,13 @@ void playSong() {
       noteDuration = wholenote / divider;
     } else if (divider < 0) {
       noteDuration = (wholenote / abs(divider)) * 1.5;
+    }
+
+    // Alternate servo motion
+    if ((thisNote / 2) % 4 == 0) {
+      movePos1();
+    } else {
+      movePos2();
     }
 
     tone(buzzer, melody[thisNote], noteDuration * 0.9);

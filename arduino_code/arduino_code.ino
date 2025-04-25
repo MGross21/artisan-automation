@@ -83,7 +83,7 @@ void playSong() {
     }
 
     // Alternate servo motion
-    if ((thisNote / 2) % 4 == 0) {
+    if ((thisNote / 16) % 2 == 0) { // Alternate every sixteen notes
       movePos1();
     } else {
       movePos2();
@@ -102,6 +102,10 @@ void setup() {
   pinMode(buzzer, OUTPUT);
   pinMode(motor, OUTPUT);
 
+  servo1.attach(3);
+  servo2.attach(5);
+
+  delay(1000); // add a delay to allow the servos to initialize
   playSong();
   
 }

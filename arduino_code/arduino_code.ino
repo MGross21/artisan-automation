@@ -21,13 +21,18 @@ Servo servo2;
 int servo2Pin = 5; // Pin for the left-side servo
 
 void movePos1(){
-  servo1.write(90);
+  // tilt flag forward
+  Serial.println("Moving to position 1");
+  servo1.write(75);
   servo2.write(0);
+
 }
 
 void movePos2(){
-  servo1.write(5);
-  servo2.write(85);
+  // tilt flag backward
+  Serial.println("Moving to position 2");
+  servo1.write(35);
+  servo2.write(40);
 }
 
 
@@ -104,6 +109,9 @@ void setup() {
 
   servo1.attach(3);
   servo2.attach(5);
+
+  Serial.begin(9600);
+  Serial.println("Starting Tetris Theme...");
 
   delay(1000); // add a delay to allow the servos to initialize
   playSong();

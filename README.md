@@ -1,24 +1,53 @@
 # Artisan Automation
 
-Design, Robotics, Engineering, Art and Motion Competition
+Design, Robotics, Engineering, Art and Motion (DREAM) Competition
 
 [See Event Here](https://intheloop.engineering.asu.edu/2025/04/18/attend-the-dream-competition-seminar-april-25/)
 
-## How to Convert Audio
+🏆🥇 **Awarded First Place and a $1,000 Prize.**
+
+## Background
+
+We invite you to journey back to 1954—the year the world witnessed the first autonomous robot take its historic steps. Fast forward 70 years, and we find ourselves navigating the intricate relationship between human ingenuity and artificial intelligence.
+
+Amid sensational headlines about robots and AI, a fascinating synergy emerges—a partnership where humans and robots complement each other. Robots excel in endurance during long work sessions, while human creativity thrives in adaptability and innovation.
+
+This harmonious collaboration is the essence of our Continuum Crate.
+
+## Unveiling the DREAM of our *Continuum Crate*
+
+Our creation doesn't just showcase technology—it narrates a vision of our future. Inside this seemingly simple crate lies the essence of tomorrow—a world where robots and humans don’t merely coexist but co-create.
+
+ASU's mascot, Sparky, and the Robot unite to hold the "MSN" banner—not as rivals, but as partners in collaboration.
+
+
+**Design**: We've crafted a deceptively simple exterior that transforms into a moment of wonder. The minimalist, modular box opens to reveal something unexpected—a theatrical "Voila!"
+
+**Robotics**: This seamless experience required a symphony of disciplines—mechanical engineering principles, robotics, cutting-edge manufacturing, and intricate mechatronics all working in harmony.
+
+**Engineering**: Behind this elegant simplicity lies remarkable complexity—five distinct manufacturing techniques converging to create something greater than the sum of its parts.
+
+**Art**: Watch as human and robot unite, in waving the MSN flag—a powerful metaphor for collaboration across areas like manufacturing and even your future homes.
+
+**Manufacturing**: What you will witness isn't just a demonstration—it's a window into tomorrow. The Continuum Crate doesn't ask you to fear the future but to embrace it. This isn't about replacement; it's about enhancement—humans and robots writing the next chapter of innovation together.
+
+
+![Continuum Crate](media/continuum_crate.gif)
+
+## ASU Design Aspirations
+
+**Fusing Intellectual Disciplines**: By integrating mechatronics, manufacturing, and robotics, this project exemplifies the fusion of diverse intellectual fields.
+
+**Conducting Use-Inspired Research**: The human-robot and human-AI collaboration showcased here highlights the potential for impactful research as people, machines, and AI become increasingly interconnected.
+
+**Valuing Entrepreneurship**: This creation demonstrates how three ASU students, with no formal arts background, leveraged their knowledge to innovate and bring their vision to life.
+
+**Practicing Principled Innovation**: By portraying robots as joyful and expressive companions rather than mere tools, this project fosters a principled dialogue about the evolving relationship between humans and machines.
+
+## Using MP3-to-Bytes Conversion Script
 
 ```bash
 python -m venv venv && venv/Scripts/activate  # Create and activate python virtual environmnet
 pip install -r requirements.txt  # Install Required Packages
-```
-
-### Using Custom MP3-to-Byte Conversion Script
-
-```bash
 python audio_conversion/mp3_to_arr.py audio_conversion/asu_fight_song.mp3 arduino_code/song.h --name asu_fight_song --rate 1000
-```
-
-### Using Audio-to-Arduino Library
-
-```bash
-python audio-to-arduino/audio-to-arduino.py media/asu_fight_song.mp3 --tempo 132
 ```

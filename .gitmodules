@@ -1,3 +1,0 @@
-[submodule "audio-to-arduino"]
-	path = audio-to-arduino
-	url = https://github.com/arashjafari/audio-to-arduino.git

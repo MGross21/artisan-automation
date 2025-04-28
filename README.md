@@ -6,7 +6,13 @@ Design, Robotics, Engineering, Art and Motion (DREAM) Competition
 
 🏆🥇 **Awarded First Place and a $1,000 Prize.**
 
-## Background
+## Team Members
+
+1. [Michael Gross](https://github.com/MGross21)
+2. [Praneeth Boddeti](https://github.com/pbleedblue)
+3. [Jacob Pisors](https://github.com/JPisors)
+
+## Introduction
 
 We invite you to journey back to 1954—the year the world witnessed the first autonomous robot take its historic steps. Fast forward 70 years, and we find ourselves navigating the intricate relationship between human ingenuity and artificial intelligence.
 
@@ -20,7 +26,6 @@ Our creation doesn't just showcase technology—it narrates a vision of our futu
 
 ASU's mascot, Sparky, and the Robot unite to hold the "MSN" banner—not as rivals, but as partners in collaboration.
 
-
 **Design**: We've crafted a deceptively simple exterior that transforms into a moment of wonder. The minimalist, modular box opens to reveal something unexpected—a theatrical "Voila!"
 
 **Robotics**: This seamless experience required a symphony of disciplines—mechanical engineering principles, robotics, cutting-edge manufacturing, and intricate mechatronics all working in harmony.
@@ -30,7 +35,6 @@ ASU's mascot, Sparky, and the Robot unite to hold the "MSN" banner—not as riva
 **Art**: Watch as human and robot unite, in waving the MSN flag—a powerful metaphor for collaboration across areas like manufacturing and even your future homes.
 
 **Manufacturing**: What you will witness isn't just a demonstration—it's a window into tomorrow. The Continuum Crate doesn't ask you to fear the future but to embrace it. This isn't about replacement; it's about enhancement—humans and robots writing the next chapter of innovation together.
-
 
 ![Continuum Crate](media/continuum_crate.gif)
 
@@ -47,7 +51,8 @@ ASU's mascot, Sparky, and the Robot unite to hold the "MSN" banner—not as riva
 ## Using MP3-to-Bytes Conversion Script
 
 ```bash
-python -m venv venv && venv/Scripts/activate  # Create and activate python virtual environmnet
+python -m venv venv # Create python virtual environment
+venv/Scripts/activate  # Activate environmnet
 pip install -r requirements.txt  # Install Required Packages
 python audio_conversion/mp3_to_arr.py audio_conversion/asu_fight_song.mp3 arduino_code/song.h --name asu_fight_song --rate 1000
 ```

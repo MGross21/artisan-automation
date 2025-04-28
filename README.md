@@ -8,9 +8,9 @@ Design, Robotics, Engineering, Art and Motion (DREAM) Competition
 
 ## Team Members
 
-1. [Michael Gross](https://github.com/MGross21)
-2. [Praneeth Boddeti](https://github.com/pbleedblue)
-3. [Jacob Pisors](https://github.com/JPisors)
+[Michael Gross](https://github.com/MGross21)
+[Praneeth Boddeti](https://github.com/pbleedblue)
+[Jacob Pisors](https://github.com/JPisors)
 
 ## Introduction
 

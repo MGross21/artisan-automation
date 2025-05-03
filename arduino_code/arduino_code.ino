@@ -20,22 +20,20 @@ int servo1Pin = 3; // Pin for the right-side servo
 Servo servo2;
 int servo2Pin = 5; // Pin for the left-side servo
 
-void movePos1(){
-  // tilt flag forward
-  Serial.println("Moving to position 1");
-  servo1.write(75);
-  servo2.write(0);
-
+void moveServoPosition(int pos1, int pos2, const char* positionName) {
+  Serial.print("Moving to position ");
+  Serial.println(positionName);
+  servo1.write(pos1);
+  servo2.write(pos2);
 }
 
-void movePos2(){
-  // tilt flag backward
-  Serial.println("Moving to position 2");
-  servo1.write(35);
-  servo2.write(40);
+void movePos1() {
+  moveServoPosition(75, 0, "1"); // Forward tilt position
 }
 
-
+void movePos2() {
+  moveServoPosition(35, 40, "2"); // Backward tilt position
+}
 
 // Melody and durations
 int melody[] = {

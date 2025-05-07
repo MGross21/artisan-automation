@@ -62,9 +62,36 @@ ASU's mascot, Sparky, and the Robot unite to hold the "MSN" banner—not as riva
 
 ## Using MP3-to-Bytes Conversion Script
 
+To convert an MP3 file into a byte array for use in Arduino projects, follow these steps:
+
+1. **Create a Python virtual environment**:
+
 ```bash
-python -m venv venv # Create python virtual environment
-venv/Scripts/activate  # Activate environmnet
-pip install -r requirements.txt  # Install Required Packages
+python -m venv venv
+```
+
+2. **Activate the virtual environment**:
+
+```bash
+venv/Scripts/activate
+```
+
+3. **Install the required packages**:
+
+```bash
+pip install -r requirements.txt
+```
+
+4. **Run the conversion script**:
+
+```bash
 python audio_conversion/mp3_to_arr.py audio_conversion/asu_fight_song.mp3 arduino_code/song.h --name asu_fight_song --rate 1000
+```
+
+This will generate a [`song.h`](arduino_code/song.h) file containing the byte array representation of the MP3 file, which can be included in your Arduino project.
+
+```c
+#include "song.h"
+
+// Rest of your code here
 ```

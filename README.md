@@ -2,15 +2,27 @@
 
 Design, Robotics, Engineering, Art and Motion (DREAM) Competition
 
-[See Event Here](https://intheloop.engineering.asu.edu/2025/04/18/attend-the-dream-competition-seminar-april-25/)
+[Event Announcement](https://intheloop.engineering.asu.edu/2025/04/18/attend-the-dream-competition-seminar-april-25/)
 
 🏆🥇 **Awarded First Place and a $1,000 Prize.**
 
+## Event Recap
+
+Check out the highlights from the DREAM Competition on social media:
+
+- [LinkedIn](https://www.linkedin.com/posts/school-of-manufacturing-systems-and-networks_asuengineering-design-robotics-activity-7324208506419453957-uM9B?utm_source=share&utm_medium=member_desktop&rcm=ACoAADIqOI4BuuBIn9Lw3VbPEu5bQkc3evp5cIs)  
+- [Instagram](https://www.instagram.com/p/DJK45kJuQgY/)
+
 ## Team Members
 
-[Michael Gross](https://github.com/MGross21)\
-[Praneeth Boddeti](https://github.com/pbleedblue)\
-[Jacob Pisors](https://github.com/JPisors)
+- **Michael Gross**  
+    [GitHub](https://github.com/MGross21) | [LinkedIn](https://www.linkedin.com/in/mhgross)
+
+- **Praneeth Boddeti**  
+    [GitHub](https://github.com/pbleedblue) | [LinkedIn](https://www.linkedin.com/in/praneeth-boddeti)
+
+- **Jacob Pisors**  
+    [GitHub](https://github.com/JPisors) | [LinkedIn](https://www.linkedin.com/in/jacob-pisors)
 
 ## Introduction
 

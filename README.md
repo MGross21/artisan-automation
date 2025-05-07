@@ -85,7 +85,23 @@ pip install -r requirements.txt
 4. **Run the conversion script**:
 
 ```bash
-python audio_conversion/mp3_to_arr.py audio_conversion/asu_fight_song.mp3 arduino_code/song.h --name asu_fight_song --rate 1000
+python <conversion-script> <input> <output> <flags>
+```
+
+- **Input**: An MP3 file (e.g., `asu_fight_song.mp3`).
+- **Output**: A C header file (e.g., `song.h`) with the byte array.
+- **Flags**:
+    - `--name`: Specifies the variable name for the byte array.
+    - `--rate`: Sets the sampling rate for the conversion.
+
+This tool simplifies embedding audio data into Arduino projects for playback or other uses.
+
+```bash
+python audio_conversion/mp3_to_arr.py \
+    audio_conversion/asu_fight_song.mp3 \
+    arduino_code/song.h \
+    --name asu_fight_song \
+    --rate 1000
 ```
 
 This will generate a [`song.h`](arduino_code/song.h) file containing the byte array representation of the MP3 file, which can be included in your Arduino project.
